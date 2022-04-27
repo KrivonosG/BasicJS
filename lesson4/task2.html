@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        /*ES5 2.a*/
+        function Post(author, text, date) {
+            this.author = author;
+            this.text = text;
+            this.date = date;
+        }
+        Post.prototype.edit = function (text) {
+            this.text = text;
+        }
+
+        /*2.b*/
+        function AttachedPost(author, text, date) {
+            Post.call(this, author, text, date);
+            this.highlighted = false;
+        }
+
+        AttachedPost.prototype = Object.create(Post.prototype);
+        AttachedPost.prototype.constructor = AttachedPost;
+
+        AttachedPost.prototype.makeTextHighlighted = function () {
+            this.highlighted = true;
+            console.log('highlighted = ' + this.highlighted);
+        }
+
+        let res1 = new AttachedPost('Petrov', 'film5', new Date());
+        console.log(res1);
+        res.makeTextHighlighted();
+        res.edit('Matrix-4');
+        console.log(res1);
+
+
+        /*ES6 2.a*/
+
+        class Post {
+            constructor(author, text, date) {
+                this.author = author;
+                this.text = text;
+                this.date = date;
+            }
+            edit(text) {
+                this.text = text;
+            }
+        }
+
+        /*2.b*/
+        class AttachedPost extends Post {
+            constructor(author, text, date) {
+                super(author, text, date);
+                this.highlighted = false;
+            }
+
+            makeTextHighlighted() {
+                this.highlighted = true;
+            }
+        }
+
+        let res2 = new AttachedPost('Petrov', 'film5', new Date());
+        console.log(res2);
+        res.makeTextHighlighted();
+        res.edit('Matrix-4');
+        console.log(res2);
+    </script>
+</body>
+
+</html>

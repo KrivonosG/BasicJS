@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        /* ES5 */
+        function Product(name, price) {
+            this.name = name;
+            this.price = price;
+        };
+
+        Product.prototype.make25PercentDiscount = function () {
+            this.price = this.price - (this.price * 25 / 100);
+        };
+
+        let result1 = new Product('Product', 100);
+        result1.make25PercentDiscount();
+        console.log(result1);
+
+        /*ES6*/
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+
+            }
+            make25PercentDiscount() {
+                this.price = this.price - (this.price * 25 / 100);
+            };
+        };
+
+        let result2 = new Product('Product', 100);
+        result2.make25PercentDiscount();
+        console.log(result2);
+    </script>
+</body>
+
+</html>
